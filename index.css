@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #333;
+    padding-bottom: 2rem;
+    position: relative;
+}
+#voice {
+    display: none;
+}
+#xiong {
+    width: 9rem;
+    height: 9rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin: -4.5rem -4.5rem;
+    background: url('./xiong.png') no-repeat;
+    background-size: 100% 100%;
+    -webkit-transition: all .8s;
+    transition: all .8s;
+    opacity: 0;
+    -webkit-transform: rotate(-180deg) scale(0 ,0);
+    transform: rotate(-180deg) scale(0 ,0);
+    border-radius: 10%;
+}
+#click {
+    width: 2rem;
+    height: 2rem;
+    background: red;
+    border-radius: 100%;
+    z-index: 1;
+    font-weight: bold;
+    opacity: 0.8;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    transition: all .6s;
+    color: #fff;
+    font-size: 20px;
+    position: fixed;
+    right: -2rem;
+    top: 0.1rem;
+    text-align: center;
+    line-height: 2rem;
+}
+.container {
+    width: 9rem;
+    padding: 0 0.5rem;
+    margin: 0 auto;
+    word-break:break-all;
+　　word-wrap:break-word;
+}
+.computer-font {
+    font-size: 20px;
+    line-height: 28px;
+    text-shadow: 0px 0px 1px #fff;
+}
+#computerFont1 {
+    font-size: 22px;
+    color: #FFE1FF;
+}
+#computerFont2 {
+    color: #fff;
+    text-indent: 0.8rem;
+}
+#computerFont3 {
+    color: lightblue;
+    float: right;
+}
+[data-dpr='2'] .computer-font {
+    font-size: 40px;
+    line-height: 56px;
+    text-shadow: 0px 0px 2px #fff;
+}
+[data-dpr='3'] .computer-font {
+    font-size: 60px;
+    line-height: 84px;
+    text-shadow: 0px 0px 3px #fff;
+}
+
+[data-dpr='2'] #computerFont1 {
+    font-size: 44px;
+}
+[data-dpr='3'] #computerFont1 {
+    font-size: 66px;
+}
+[data-dpr='2'] #computerFont3 {
+    font-size: 44px;
+}
+[data-dpr='3'] #computerFont3 {
+    font-size: 66px;
+}
+[data-dpr='2'] #click {
+    font-size: 40px;
+}
+[data-dpr='3'] #click {
+    font-size: 60px;
+}

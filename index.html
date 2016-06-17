@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>程序员</title>
+    <script>
+        !function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=a.navigator.userAgent,q=(!!p.match(/android/gi),!!p.match(/iphone/gi)),r=q&&!!p.match(/OS 9_3/),s=a.devicePixelRatio;i=q&&!r?s>=3&&(!i||i>=3)?3:s>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var t=e.createElement("div");t.appendChild(g),e.write(t.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+    </script>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+    <div id='click'>
+        点劳资
+    </div>
+    <div id='xiong'></div>
+    <div class='container'>
+        <p id='computerFont1' class='computer-font'>
+            To:屌丝
+        </p>
+        <p id='computerFont2' class='computer-font'>
+            嘿嘿，首先我很抱歉昨天说出那样的话。也许是因为第一次谈恋爱，或者是从小养成的这样的性格让我很怕失去你。但是这一个月我好像装逼不在状态老是在逼你做一些短时间很难改变的事情。老是找你抱怨这抱怨那，代码也不敲，游戏也不玩，差点忘记原来的自己是什么样子了。其实我也知道你很努力了，很努力的在为我改变，但不知道为什么我就是不能说服自己。我感觉这一个月的我不太像我，想东西想得太多，太钻牛角尖。今天我想了很久发现自己的问题挺多的，可能是由于本身性格原因加上最近看了太多的关于情感方面的帖子什么知乎啊贴吧啊，感觉有点感性不太理智。但是从今天开始我要找回原来的我，我希望我能把我最好的一面展示给我喜欢的人，我还是那个你最喜欢的网校的阳光帅气的男盆友导师，从未变过。
+        </p>
+        <p id='computerFont3' class='computer-font'>      
+        </p>
+    </div>
+    <video id='voice' src='./voice.mov' controls='controls'></video>
+    <script>
+        show({
+            el: document.getElementById('computerFont1'),
+            timeScal: 300,
+        })
+        show({
+            el: document.getElementById('computerFont2'),
+            timeScal: 120,
+        })
+        .then(function () {
+            show({
+                el: document.getElementById('computerFont3'),
+                timeScal: 300,
+                text: 'By:男神.导师.男盆友.梁宸'
+            })
+            .then(function () {
+                document.getElementById('click').style.right = '0.5rem';
+            })
+        })
+        var flag = true;
+
+        document.getElementById('click').addEventListener('click', function () {
+
+            if (flag) {    
+                document.getElementById('xiong').style.opacity = 1;
+                document.getElementById('xiong').style.WebkitTransform = 'rotate(0deg) scale(1 ,1)';
+            } else {
+                document.getElementById('xiong').style.opacity = 0;
+                document.getElementById('xiong').style.WebkitTransform = 'rotate(-180deg) scale(0 ,0)';
+            }
+            flag = !flag;
+
+        })
+
+        function show (conf) {
+            var timeScal = conf.timeScal,
+                voice = conf.voice;
+
+            var el = conf.el,
+                text = conf.text || el.innerHTML.replace(/\s/g, '');
+
+            var defaultTimeScale = 600;
+
+            var countNumber = 0,
+                strLen = text.length;
+
+            var callback;
+
+            el.innerHTML = '';
+
+            function createSpan (text) {
+                var span = document.createElement('span');
+                span.innerHTML = text;
+                return span;
+            }
+
+            function appendToEl (span) {
+                el.appendChild(span);
+            }
+
+            function sliceText (count) {
+                return text.slice(count, count + 1);
+            }
+
+            function then (fn) {
+                callback = fn;
+            }
+
+            var timer = setInterval(function () {
+                appendToEl(
+                    createSpan(
+                        sliceText(countNumber++)
+                    )
+                );
+                if (countNumber === strLen) {
+                    callback && callback();
+                    clearInterval(timer);
+                }
+
+            }, timeScal || defaultTimeScale)
+
+            return {
+                then: then
+            }
+        }
+    </script>
+</body>
+</html>
